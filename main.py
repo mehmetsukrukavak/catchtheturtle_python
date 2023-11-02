@@ -1,16 +1,24 @@
-# This is a sample Python script.
+import turtle
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+FONT = ('Arial', 30, 'normal')
+screen = turtle.Screen()
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+screen.bgcolor("Light Blue")
+screen.title("Catch The Turtle")
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+#score turtle
+def setup_score_turtle():
+    score_turtle = turtle.Turtle()
+    score_turtle.hideturtle()
+    score_turtle.color("dark blue")
+    score_turtle.penup()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    top_height = screen.window_height() / 2
+    y = top_height * 0.9
+    score_turtle.setpos(0,  y)
+    score_turtle.write(arg="Score: 0", move=False, align="center", font=FONT)
+
+setup_score_turtle()
+
+turtle.mainloop()
