@@ -7,12 +7,13 @@ screen.bgcolor("Light Blue")
 screen.title("Catch The Turtle")
 
 grid_size = 10
-
+score = 0
 #turtle list
 turtle_list = []
 #score turtle
+score_turtle = turtle.Turtle()
 def setup_score_turtle():
-    score_turtle = turtle.Turtle()
+
     score_turtle.hideturtle()
     score_turtle.color("dark blue")
     score_turtle.penup()
@@ -27,7 +28,13 @@ def make_turtle(x, y):
     t.penup()
     t.shape("turtle")
     t.shapesize(2,2)
+    def handle_click(x,y):
+        global  score
+        score += 1
+        score_turtle.clear()
+        score_turtle.write(arg="Score: {}".format(score), move=False, align="center", font=FONT)
 
+    t.onclick(handle_click)
     t.goto(x * grid_size ,y * grid_size)
     turtle_list.append(t)
 
@@ -36,7 +43,9 @@ def hide_turtles():
         t.hideturtle()
 
 def show_turtle_randomly():
-    random.choice(turtle_list).showturtle();
+    hide_turtles()
+    random.choice(turtle_list).showturtle()
+    screen.ontimer(show_turtle_randomly, 500)
 
 
 x_coordinates = [-20, -10, 0, 10, 20]
